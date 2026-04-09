@@ -1,0 +1,25 @@
+# code in main
+async def run_sync(provider_id: int):
+    providers[provider_id].status = "Syncing..."
+    await asyncio.sleep(5)
+    providers[provider_id].status = "Complete"
+
+@app.post("/sync/{provider_id}")
+async def start_sync(provider_id: int, background_tasks: BackgroundTasks):
+    background_tasks.add_task(run_sync, provider_id)
+    return {"message": "Sync started"}
+
+
+# pytest
+def test_trigger_sync():
+    provider_id = 1
+    response = client.post(("/sync/{provider_id}"))
+    assert response.status_code == 200
+    assert response.json() == {"message": "Sync started"}
+
+def test_invalid_provider_sync():
+    # If your code doesn't handle missing IDs yet, 
+    # this is a great thing to catch in an interview!
+    response = client.post("/sync/999")
+    # Depending on your logic, you might expect a 404 or 500
+    assert response.status_code != 404 # Placeholder logic
