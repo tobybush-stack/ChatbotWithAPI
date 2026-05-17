@@ -9,7 +9,6 @@ from sse_starlette.sse import EventSourceResponse
 import time
 from typing import List
 
-
 app = FastAPI()
 
 app.add_middleware(
@@ -25,13 +24,6 @@ class Provider(BaseModel):
     status: str = "Idle"
     location: str | None = None
 
-# db = {
-#     1: Provider(id=1, name="General Hospital"),
-#     2: Provider(id=2, name="North Clinic"),
-#     3: Provider(id=3, name="South Clinic"),
-#     4: Provider(id=4, name="Saint James Hospital")
-# }
-
 providers_table = [
     Provider(id=1, name="General Hospital"),
     Provider(id=2, name="North Clinic"),
@@ -43,7 +35,6 @@ providers_table = [
 async def root():
     return {"message": "root"}
 
-# get list of providers
 @app.get("/providers", response_model=List[Provider])
 async def get_providers():
     return list(providers_table)

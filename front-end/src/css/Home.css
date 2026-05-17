@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-.provider-list {
-  
-}
-
 .search-form {
   max-width: 600px;
   margin: 0 auto 2rem;
@@ -45,7 +41,6 @@
 .search-button:hover {
   background-color: #f40612;
 }
-
 
 @media (max-width: 639px) {
   .home {
