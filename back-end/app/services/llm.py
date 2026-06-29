@@ -1,7 +1,8 @@
-
+from fastapi import HTTPException
 
 async def response():
-    await response =  """
+    try:
+        await response =  """
 James Bond, code-named 007, is a fictional British Secret Service
 (MI6) agent created by author Ian Fleming in 1953. He is a highly
 skilled spy with a "license to kill," known for using high-tech
@@ -26,4 +27,6 @@ Timothy Dalton
 Pierce Brosnan
 Daniel Craig
 """
+    except Exception as e:
+        raise HTTPException(500, "Failed to generate LLM Streaming Response due to the following error:\n" + str(e))
     return response

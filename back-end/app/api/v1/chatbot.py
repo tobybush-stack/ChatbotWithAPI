@@ -11,6 +11,7 @@ router = APIRouter()
 
 @router.get("/llm/stream", response_class=StreamingResponse)
 async def llm_stream() -> AsyncIterable[str]:
+    """Get LLM Streaming Response"""
     llm_response = response()
     for line in llm_response.splitlines():
         yield json.dumps(line) + '\n'
