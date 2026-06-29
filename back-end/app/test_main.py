@@ -2,7 +2,7 @@ import pytest
 from fastapi import BackgroundTasks, FastAPI
 from fastapi.testclient import TestClient
 from httpx import AsyncClient, ASGITransport
-from main import app, Provider
+from api.api import app, Provider
 
 client = TestClient(app)
 
